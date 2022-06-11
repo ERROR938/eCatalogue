@@ -2,7 +2,7 @@ RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
 
     PlayerData = xPlayer
-    
+
 end)
 
 
@@ -15,10 +15,13 @@ Citizen.CreateThread(function()
             local ped = PlayerPedId()
             local pos = GetEntityCoords(ped)
             local point = vector3(v.x, v.y, v.z)
+            local inter = 200
 
             local dst = #(pos - point)
 
             if dst <= 2 then
+
+                inter = 0
 
                 ESX.ShowHelpNotification('Appuie sur ~INPUT_CONTEXT~ pour acceder au ~b~catalogue')
 
@@ -27,9 +30,13 @@ Citizen.CreateThread(function()
                     openCatalogue()
 
                 end
+
+            else 
+
+                inter = 1000
             end
 
-            Citizen.Wait(0)
+            Citizen.Wait(inter)
         end
 
     end
